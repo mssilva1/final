@@ -5,6 +5,7 @@ KIEI-451 Winter 2021
 Team: Ignacio Miranda, Soledad Silva, Akira Takiguchi
 
 User Stories:
+
 •	As a new user I want to be able to set up my personal account
 •	As a registered user I want to be able to login and see my previously completed and ongoing tournaments
 •	As a logged in user, I want to be able to create a tournament with both group phase and direct elimination phase.
