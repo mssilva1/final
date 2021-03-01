@@ -15,3 +15,6 @@ As a logged in user, I want to be able to create a tournament with both group ph
 As a logged in user, I want to invite other users to see/edit my tournaments.
 
 As a user with access to a tournament I want to be able to add/edit match results.
+
+
+PRIMER PUSH
