@@ -45,70 +45,70 @@ firebase.auth().onAuthStateChanged(async function(user) {
             let drawThird = draw[2]
             let drawFourth = draw[3]
     
-           document.querySelector('.tournaments').innerHTML = `
-           <div class="m-16 container bg-white text-center mx-auto">
-              <h1 class="inline-block px-4 py-2 rounded-xl text-2xl bg-clip-text text-black text-center font-bold">
-              <span class="tournamentName">XXXX</span>
-              </h1>
-              
-              <div class="border-4 border-gray-900 p-4 my-4 text-left firstRound">
-                <div class="flex">
-                  <div class="w-1/2 text-center">
-                    <h2 class="text-xl py-1">1st Match</h2>
-                    <button class="m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button" id="drawFirstButton">
-                    ${drawFirst}
-                    </button>
-                    <h2 class="text-xl pl-16">vs.</h2>
-                    <button class="drawSecondButton m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
-                    ${drawSecond}
-                    </button>
-                  </div>
-    
-                  <div class="w-1/2 text-center">
-                    <h2 class="text-2xl py-1">Final</h2>
-                    <button class="m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
-                    Winner 1
-                    </button>
-                  </div>
-    
-                  <div class="w-1/2 text-center">
-                  <h2 class="text-2xl py-1">Champion!</h2>
-                  <button class="m-4 mt-48 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
-                  Champion
-                  </button>
-                  </div>
-                </div>
-    
-                <div class="flex">
-                  <div class="w-1/2 text-center">
-                    <h2 class="text-xl py-1">2nd Match</h2>
-                    <button class="drawThirdButton m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
-                    ${drawThird}
-                    </button>
-                    <h2 class="text-xl pl-16">vs.</h2>
-                    <button class="drawFourthButton m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
-                    ${drawFourth}
-                    </button>
-                  </div>
-    
-                  <div class="w-1/2 text-center">
-                    <h2 class="text-2xl py-1"> </h2>
-                    <button class="m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
-                    Winner 2
-                    </button>
-                  </div>
-    
-                  <div class="w-1/2 text-center">
-                  <h2 class="text-2xl py-1"> </h2>
-                  <button class="m-4 mt-48 w-1/2 shadow bg-white hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" type="button">
-                  Champion
-                  </button>
-                  </div>
-                </div>
-              </div>
-            </div>  
-            `
-           }
+                document.querySelector('.tournaments').insertAdjacentHTML('beforeend',`
+                <div class="m-16 container bg-white text-center mx-auto">
+                    <h1 class="inline-block px-4 py-2 rounded-xl text-2xl bg-clip-text text-black text-center font-bold">
+                    <span class="tournamentName">XXXX</span>
+                    </h1>
+                    
+                    <div class="border-4 border-gray-900 p-4 my-4 text-left firstRound">
+                        <div class="flex">
+                        <div class="w-1/2 text-center">
+                            <h2 class="text-xl py-1">1st Match</h2>
+                            <button class="m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button" id="drawFirstButton">
+                            ${drawFirst}
+                            </button>
+                            <h2 class="text-xl pl-16">vs.</h2>
+                            <button class="drawSecondButton m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                            ${drawSecond}
+                            </button>
+                        </div>
+            
+                        <div class="w-1/2 text-center">
+                            <h2 class="text-2xl py-1">Final</h2>
+                            <button class="m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                            Winner 1
+                            </button>
+                        </div>
+            
+                        <div class="w-1/2 text-center">
+                        <h2 class="text-2xl py-1">Champion!</h2>
+                        <button class="m-4 mt-48 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                        Champion
+                        </button>
+                        </div>
+                        </div>
+            
+                        <div class="flex">
+                        <div class="w-1/2 text-center">
+                            <h2 class="text-xl py-1">2nd Match</h2>
+                            <button class="drawThirdButton m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                            ${drawThird}
+                            </button>
+                            <h2 class="text-xl pl-16">vs.</h2>
+                            <button class="drawFourthButton m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                            ${drawFourth}
+                            </button>
+                        </div>
+            
+                        <div class="w-1/2 text-center">
+                            <h2 class="text-2xl py-1"> </h2>
+                            <button class="m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                            Winner 2
+                            </button>
+                        </div>
+            
+                        <div class="w-1/2 text-center">
+                        <h2 class="text-2xl py-1"> </h2>
+                        <button class="m-4 mt-48 w-1/2 shadow bg-white hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" type="button">
+                        Champion
+                        </button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>  
+                    `)
+            }
     
            document.querySelector('#drawFirstButton').addEventListener('click', async function(event) {
              event.preventDefault()

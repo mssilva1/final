@@ -37,6 +37,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
       document.location.href = 'newtournament.html'
     })
 
+    document.querySelector('.past').addEventListener('click', function(event) {
+      document.location.href = 'tournament.html'
+    })
+
     
   } else {
     // Signed out
