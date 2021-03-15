@@ -20,7 +20,22 @@
     </div> 
 
     <div class="py-8 sign-in-or-sign-out"></div>
+      
 
+    <div class="tournaments">
+
+        <div class="relative">
+            <select id="Selector" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option>Fifa 21</option>
+              <option>Fifa 22</option>
+              <option>Other</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+          </div>
+    <!-- tournament form rendered from JavaScript -->
+  </div>
     
     <div class="p-4 relative bottom-0 bg-gray-700">
       <div class="text-white text-center">"Amazing website to track you own sports tournaments"</div> 
@@ -46,9 +61,7 @@
 
 
 
-  <div class="tournaments">
-    <!-- tournament form rendered from JavaScript -->
-  </div>
+
  
   <!-- Put the Firebase config here -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -61,18 +74,18 @@
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
-     apiKey: "AIzaSyB6YB6TS_esY1G-LVUdcwKuVtZTrn6FDOw",
-     authDomain: "kiei-451-1c00b.firebaseapp.com",
-     projectId: "kiei-451-1c00b",
-     storageBucket: "kiei-451-1c00b.appspot.com",
-     messagingSenderId: "774515538073",
-     appId: "1:774515538073:web:a62f02dcce98bbfb942008"
-   };
+    apiKey: "AIzaSyB6YB6TS_esY1G-LVUdcwKuVtZTrn6FDOw",
+    authDomain: "kiei-451-1c00b.firebaseapp.com",
+    projectId: "kiei-451-1c00b",
+    storageBucket: "kiei-451-1c00b.appspot.com",
+    messagingSenderId: "774515538073",
+    appId: "1:774515538073:web:a62f02dcce98bbfb942008"
+    };
     // replace
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="index.js"></script>
+  <script src="tournament.js"></script>
 </body>
 
 </html>

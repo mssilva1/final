@@ -1,7 +1,7 @@
 let firebase = require('./firebase')
 
 exports.handler = async function(event) {
-  let data = [] // sample only...
+  let data = [] 
   return {
     statusCode: 200,
     body: JSON.stringify(data)
