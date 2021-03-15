@@ -20,23 +20,48 @@ firebase.auth().onAuthStateChanged(async function(user) {
             document.location.href = 'index.html'
           })
 
-          let querySnapshot = await db.collection(`All Tournaments`)
+          let tournamentsQuery = await db.collection(`All Tournaments`)
                                       .where ('userId', '==', user.uid)
                                       .get()
-          let numberOfTournaments = querySnapshot.size
-          console.log(numberOfTournaments)  
-          console.log(querySnapshot)
-            // let current = document.querySelector('.selector').value
-            // console.log(current)
-        
+          let numberOfTournaments = tournamentsQuery.size
+          console.log(numberOfTournaments)
+          let tournaments = tournamentsQuery.docs
+          console.log(tournaments)
+          let tournamentsList = []
+          for (let i=0; i<tournaments.length; i++) {
+            let tournament = tournaments[i].data()                     
+            tournamentsList.push({
+              tournament: tournament.tournamentName,
+            })
+            document.querySelector('#selector').insertAdjacentHTML("beforeend", `
+                                                                <option>${tournament.tournamentName}</option> 
+                                                                    `)
+           }
+           console.log(tournamentsList)
+          
+           document.querySelector("#selector").value = ""
 
-            current = "Fifa 21"
+            var changedText = document.querySelector("#changed")
+            function listQ(){
+                changedText.textContent = this.value;
+            }
+            document.querySelector("#selector").onchange = listQ
+            
+            document.querySelector('#selector').addEventListener('click', async function(event) {
+                let current = document.querySelector("#selector").value
+                console.log(current)
+                let playerQuery = await db.collection(`${current}-${user.uid}`).doc(`Players`).get()
+                let players = playerQuery.data()
+                let draw = []
+                  
+                    draw.push(players.drawFirst)
+                    draw.push(players.drawSecond)
+                    draw.push(players.drawThird)
+                    draw.push(players.drawFourth)
 
-            let querySnapshot2 = await db.collection(`${current}-${user.uid}`).doc(`Players`).get()
-            console.log(querySnapshot2)
-
-            let draw =[`Akira`,`Akira`,`Akira`,`Akira`]
-            renderTournament4(draw)
+                console.log(draw)
+                renderTournament4(draw)
+              })
 
 
             async function renderTournament4(draw) {
@@ -45,10 +70,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
             let drawThird = draw[2]
             let drawFourth = draw[3]
     
-                document.querySelector('.tournaments').insertAdjacentHTML('beforeend',`
+                document.querySelector('.tournaments').innerHTML=`
                 <div class="m-16 container bg-white text-center mx-auto">
                     <h1 class="inline-block px-4 py-2 rounded-xl text-2xl bg-clip-text text-black text-center font-bold">
-                    <span class="tournamentName">XXXX</span>
+                    <span class="tournamentName"></span>
                     </h1>
                     
                     <div class="border-4 border-gray-900 p-4 my-4 text-left firstRound">
@@ -107,7 +132,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
                         </div>
                     </div>
                     </div>  
-                    `)
+                    `
             }
     
            document.querySelector('#drawFirstButton').addEventListener('click', async function(event) {
