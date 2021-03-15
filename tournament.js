@@ -48,18 +48,15 @@ firebase.auth().onAuthStateChanged(async function(user) {
             document.querySelector("#selector").onchange = listQ
             
             document.querySelector('#selector').addEventListener('click', async function(event) {
-                let current = document.querySelector("#selector").value
-                console.log(current)
-                let playerQuery = await db.collection(`${current}-${user.uid}`).doc(`Players`).get()
-                let players = playerQuery.data()
-                let draw = []
-                  
-                    draw.push(players.drawFirst)
-                    draw.push(players.drawSecond)
-                    draw.push(players.drawThird)
-                    draw.push(players.drawFourth)
-
-                console.log(draw)
+              let current = document.querySelector("#selector").value
+              let response = await fetch(`/.netlify/functions/getTournament`, {
+                method:'POST', 
+                body: JSON.stringify({
+                  userId: user.uid,
+                  tournamentName: current,
+                })
+              }) 
+              let draw = await response.json()
                 renderTournament4(draw)
               })
 
@@ -125,8 +122,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
             
                         <div class="w-1/2 text-center">
                         <h2 class="text-2xl py-1"> </h2>
-                        <button class="m-4 mt-48 w-1/2 shadow bg-white hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" type="button">
-                        Champion
+                        <button class="m-4 mt-48 w-1/2 shadow bg-gray-800 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" type="button">
+                        Results
                         </button>
                         </div>
                         </div>

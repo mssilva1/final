@@ -99,16 +99,18 @@ firebase.auth().onAuthStateChanged(async function(user) {
         body: JSON.stringify({
           userId: user.uid,
           tournamentName: tournamentName,
+          drawFirst: drawFirst,
+          drawSecond: drawSecond,
+          drawThird: drawThird,
+          drawFourth: drawFourth
         })
       })
 
-      
-
       //  await db.collection(`All Tournaments`).doc(`${tournamentName}`).set({userId: user.uid, tournamentName: tournamentName, created: firebase.firestore.FieldValue.serverTimestamp()})
-       await db.collection(`${tournamentName}-${user.uid}`).doc(`Players`).set({drawFirst, drawSecond, drawThird, drawFourth})
-       await db.collection(`${tournamentName}-${user.uid}`).doc(`Match1-${drawFirst} vs. ${drawSecond}`).set({})
-       await db.collection(`${tournamentName}-${user.uid}`).doc(`Match2-${drawThird} vs. ${drawFourth}`).set({})
-      //  document.location.href = 'tournament.html'
+      // await db.collection(`${tournamentName}-${user.uid}`).doc(`Players`).set({drawFirst, drawSecond, drawThird, drawFourth})
+      // await db.collection(`${tournamentName}-${user.uid}`).doc(`Match1-${drawFirst} vs. ${drawSecond}`).set({})
+      // await db.collection(`${tournamentName}-${user.uid}`).doc(`Match2-${drawThird} vs. ${drawFourth}`).set({})
+      document.location.href = 'tournament.html'
       })
 
 
