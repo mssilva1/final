@@ -93,11 +93,22 @@ firebase.auth().onAuthStateChanged(async function(user) {
        let drawFourth = listOfPlayers[list[3]]
        let newDraw = [drawFirst, drawSecond, drawThird, drawFourth]
        console.log(newDraw)
-       await db.collection(`All Tournaments`).doc(`${tournamentName}`).set({userId: user.uid, tournamentName: tournamentName, created: firebase.firestore.FieldValue.serverTimestamp()})
+
+       let response = await fetch(`/.netlify/functions/new_Tournament`, {
+        method:'POST', 
+        body: JSON.stringify({
+          userId: user.uid,
+          tournamentName: tournamentName,
+        })
+      })
+
+      
+
+      //  await db.collection(`All Tournaments`).doc(`${tournamentName}`).set({userId: user.uid, tournamentName: tournamentName, created: firebase.firestore.FieldValue.serverTimestamp()})
        await db.collection(`${tournamentName}-${user.uid}`).doc(`Players`).set({drawFirst, drawSecond, drawThird, drawFourth})
        await db.collection(`${tournamentName}-${user.uid}`).doc(`Match1-${drawFirst} vs. ${drawSecond}`).set({})
        await db.collection(`${tournamentName}-${user.uid}`).doc(`Match2-${drawThird} vs. ${drawFourth}`).set({})
-       document.location.href = 'tournament.html'
+      //  document.location.href = 'tournament.html'
       })
 
 
