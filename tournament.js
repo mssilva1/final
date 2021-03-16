@@ -31,8 +31,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
       
         let tournamentsList = await response.json()
           console.log(tournamentsList)
+          document.querySelector('#selector').innerHTML=""
           for (let i=0; i<tournamentsList.length; i++) {
-          document.querySelector('#selector').insertAdjacentHTML("beforeend", `
+            document.querySelector('#selector').insertAdjacentHTML("beforeend", `
                                                                 <option>${tournamentsList[i].tournamentName}</option> 
                                                                     `)
           }
@@ -59,8 +60,77 @@ firebase.auth().onAuthStateChanged(async function(user) {
               }) 
               let draw = await response.json()
                 renderTournament4(draw)
+
+
+                    // 1st Match Winner!
+                document.querySelector('.drawFirstButton').addEventListener('click', async function(event) {
+                  event.preventDefault()
+                  let winner1 = draw[1]
+                  console.log(winner1)
+                  console.log(`${winner1} just won a match`)
+                  await db.collection(`Winners`).doc(`${draw[0]}-${user.uid}`).set({winner1: winner1})
+                  document.querySelector('.winner1').innerHTML = `${winner1}`
+
+                })
+
+                document.querySelector('.drawSecondButton').addEventListener('click', async function(event) {
+                  event.preventDefault()
+                  let winner1 = draw[2]
+                  console.log(winner1)
+                  console.log(`${winner1} just won a match`)
+                  await db.collection(`Winners`).doc(`${draw[0]}-${user.uid}`).set({winner1: winner1})
+                  document.querySelector('.winner1').innerHTML = `${winner1}`
+                })
+
+                                    // 2nd Match Winner!
+                document.querySelector('.drawThirdButton').addEventListener('click', async function(event) {
+                  event.preventDefault()
+                  let winner2 = draw[3]
+                  console.log(winner2)
+                  console.log(`${winner2} just won a match`)
+                  await db.collection(`Winners`).doc(`${draw[0]}-${user.uid}`).set({winner2: winner2})
+                  document.querySelector('.winner2').innerHTML = `${winner2}`
+
+                })
+
+                document.querySelector('.drawFourthButton').addEventListener('click', async function(event) {
+                  event.preventDefault()
+                  let winner2 = draw[4]
+                  console.log(winner2)
+                  console.log(`${winner2} just won a match`)
+                  await db.collection(`Winners`).doc(`${draw[0]}-${user.uid}`).set({winner2: winner2})
+                  document.querySelector('.winner2').innerHTML = `${winner2}`
+                })
+
+                // Final Match Winner!
+                document.querySelector('.winner1').addEventListener('click', async function(event) {
+                  event.preventDefault()
+                  let champion = document.querySelector('.winner1').innerHTML
+                  console.log(champion)
+                  console.log(`${champion} just won the tournament`)
+                  await db.collection(`Winners`).doc(`${draw[0]}-${user.uid}`).set({champion: champion})
+                  document.querySelector('.champion').innerHTML = `${champion}`
+
+                })
+
+                document.querySelector('.winner2').addEventListener('click', async function(event) {
+                  event.preventDefault()
+                  let champion = document.querySelector('.winner2').innerHTML
+                  console.log(champion)
+                  console.log(`${champion} just won the tournament`)
+                  await db.collection(`Winners`).doc(`${draw[0]}-${user.uid}`).set({champion: champion})
+                  document.querySelector('.champion').innerHTML = `${champion}`
+                })
+
+                
+
+
               })
 
+            
+
+
+          
 
             async function renderTournament4(draw) {
             let tournamentName = draw[0]
@@ -79,7 +149,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
                         <div class="flex">
                         <div class="w-1/2 text-center">
                             <h2 class="text-xl py-1">1st Match</h2>
-                            <button class="m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button" id="drawFirstButton">
+                            <button class="drawFirstButton m-4 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
                             ${drawFirst}
                             </button>
                             <h2 class="text-xl pl-16">vs.</h2>
@@ -90,14 +160,14 @@ firebase.auth().onAuthStateChanged(async function(user) {
             
                         <div class="w-1/2 text-center">
                             <h2 class="text-2xl py-1">Final</h2>
-                            <button class="m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                            <button class="winner1 m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
                             Winner 1
                             </button>
                         </div>
             
                         <div class="w-1/2 text-center">
                         <h2 class="text-2xl py-1">Champion!</h2>
-                        <button class="m-4 mt-48 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                        <button class="champion m-4 mt-48 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
                         Champion
                         </button>
                         </div>
@@ -117,38 +187,20 @@ firebase.auth().onAuthStateChanged(async function(user) {
             
                         <div class="w-1/2 text-center">
                             <h2 class="text-2xl py-1"> </h2>
-                            <button class="m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
+                            <button class="winner2 m-4 mt-16 w-1/2 shadow bg-gray-200 hover:bg-gray-500 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded" type="button">
                             Winner 2
                             </button>
                         </div>
             
                         <div class="w-1/2 text-center">
                         <h2 class="text-2xl py-1"> </h2>
-                        <button class="m-4 mt-48 w-1/2 shadow bg-gray-800 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" type="button">
-                        Results
-                        </button>
+
                         </div>
                         </div>
                     </div>
                     </div>  
                     `
             }
-    
-           document.querySelector('#drawFirstButton').addEventListener('click', async function(event) {
-             event.preventDefault()
-             console.log(`${drawFirst} just won a match`)
-             let currentUserId = firebase.auth().currentUser.uid
-             let response = await fetch('/.netlify/functions/winnerButton',{
-               method: 'POST',
-               body: JSON.stringify({
-                 winner: drawFirst,
-               })
-             })
-         
-             if (response.ok) {
-               document.querySelector(`.drawFirstButton`).classList.add('opacity-40')
-             }
-           })
 
 
 
