@@ -20,26 +20,27 @@ firebase.auth().onAuthStateChanged(async function(user) {
             document.location.href = 'index.html'
           })
 
-          let tournamentsQuery = await db.collection(`All Tournaments`)
-                                      .where ('userId', '==', user.uid)
-                                      .get()
-          let numberOfTournaments = tournamentsQuery.size
-          console.log(numberOfTournaments)
-          let tournaments = tournamentsQuery.docs
-          console.log(tournaments)
-          let tournamentsList = []
-          for (let i=0; i<tournaments.length; i++) {
-            let tournament = tournaments[i].data()                     
-            tournamentsList.push({
-              tournament: tournament.tournamentName,
-            })
-            document.querySelector('#selector').insertAdjacentHTML("beforeend", `
-                                                                <option>${tournament.tournamentName}</option> 
+
+        document.querySelector('#retrieve').addEventListener('click', async function(event) {
+        let response = await fetch(`/.netlify/functions/retrieveList`, {
+          method:'POST', 
+          body: JSON.stringify({
+            userId: user.uid
+          })
+        })
+      
+        let tournamentsList = await response.json()
+          console.log(tournamentsList)
+          for (let i=0; i<tournamentsList.length; i++) {
+          document.querySelector('#selector').insertAdjacentHTML("beforeend", `
+                                                                <option>${tournamentsList[i].tournamentName}</option> 
                                                                     `)
-           }
-           console.log(tournamentsList)
-          
-           document.querySelector("#selector").value = ""
+          }
+        })
+
+
+          //  console.log(tournamentsList[0].tournamentName)
+          //  document.querySelector("#selector").value = tournamentsList[0].tournamentName
 
             var changedText = document.querySelector("#changed")
             function listQ(){
@@ -53,7 +54,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
                 method:'POST', 
                 body: JSON.stringify({
                   userId: user.uid,
-                  tournamentName: current,
+                  tournamentName: current
                 })
               }) 
               let draw = await response.json()
