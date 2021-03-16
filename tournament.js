@@ -62,15 +62,16 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
 
             async function renderTournament4(draw) {
-            let drawFirst = draw[0]
-            let drawSecond = draw[1]
-            let drawThird = draw[2]
-            let drawFourth = draw[3]
+            let tournamentName = draw[0]
+            let drawFirst = draw[1]
+            let drawSecond = draw[2]
+            let drawThird = draw[3]
+            let drawFourth = draw[4]
     
                 document.querySelector('.tournaments').innerHTML=`
                 <div class="m-16 container bg-white text-center mx-auto">
                     <h1 class="inline-block px-4 py-2 rounded-xl text-2xl bg-clip-text text-black text-center font-bold">
-                    <span class="tournamentName"></span>
+                    <span class="tournamentName">${tournamentName}</span>
                     </h1>
                     
                     <div class="border-4 border-gray-900 p-4 my-4 text-left firstRound">

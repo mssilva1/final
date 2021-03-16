@@ -18,6 +18,7 @@ exports.handler = async function(event) {
 
     let draw = [] 
   
+    draw.push(players.tournamentName)
     draw.push(players.drawFirst)
     draw.push(players.drawSecond)
     draw.push(players.drawThird)
