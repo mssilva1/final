@@ -9,18 +9,19 @@ firebase.auth().onAuthStateChanged(async function(user) {
     email: user.email
     })
     
-    document.querySelector('.sign-in-or-sign-out').innerHTML = `
-    <div class="absolute top-0 rigth-10 w-1/8 flex">  
-      <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="pink">
+    document.querySelector('.signuser').insertAdjacentHTML("beforeend",`
+    <div class="relative top-0 rigth-0 w-1/8">  
+      <svg class="mx-auto h-10 w-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="pink">
         <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
       </svg>
-      <div class="w-1/2 p-4 mx-auto">
-      <a class="text-center text-white mt-4 px-4 py-2 rounded">Signed in as ${user.displayName}</a>
+      <div class="md:w-1/8">
+      <a class="text-white mt-4 rounded">Signed in as ${user.displayName}</a>
     </div>
       <button class="text-pink-500 underline sign-out">Sign Out</button>
-    </div>
-    
-    <div class="flex content-center mx-4">
+    </div>`)
+
+    document.querySelector('.sign-in-or-sign-out').innerHTML = `
+    <div class="md:flex content-center mx-4">
       <button class="create p-12 w-1/2 mx-4 text-black font-bold text-xl text-center border-purple-400 border-4 bg-white">Create a New Tournament</button>
       <button class="past p-12 w-1/2 mx-4 text-black font-bold text-xl text-center border-purple-400 border-4 bg-white">See past Tournaments</button>
     </div>
